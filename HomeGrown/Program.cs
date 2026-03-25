@@ -1,7 +1,14 @@
+using HomeGrown.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<HomeGrownDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("HomeGrownConnection")));
 
 var app = builder.Build();
 
